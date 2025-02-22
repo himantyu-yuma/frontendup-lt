@@ -1,3 +1,4 @@
+import { VFXSpan } from "react-vfx"
 import { Text } from "../../ui"
 
 /**
@@ -7,9 +8,9 @@ export const CareerSection = () => {
   return (
     <section className="Career" style={rootStyle}>
       <div style={bodyStyle}>
-        <Text as="h2" size="xl" bold>
+        <VFXSpan shader="shine">
           経歴
-        </Text>
+        </VFXSpan>
         <ul>
           <li>
             <Text as="span">2019年4月 〜 現在: 株式会社A</Text>
@@ -31,6 +32,7 @@ const rootStyle: React.CSSProperties = {
   justifyContent: "center",
   alignItems: "center",
   padding: "2rem",
+  backgroundColor: "darkgray"
 }
 
 const bodyStyle: React.CSSProperties = {
