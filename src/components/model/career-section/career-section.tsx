@@ -1,3 +1,4 @@
+import { VFXDiv } from "react-vfx"
 import { Text } from "../../ui"
 
 /**
@@ -7,7 +8,7 @@ export const CareerSection = () => {
   return (
     <section className="Career" style={rootStyle}>
       <div style={bodyStyle}>
-        <Text as="h2" size="xl" bold>
+        <Text as="h2" size="xl" bold shader="shine">
           経歴
         </Text>
         <ul>
@@ -31,6 +32,7 @@ const rootStyle: React.CSSProperties = {
   justifyContent: "center",
   alignItems: "center",
   padding: "2rem",
+  backgroundColor: "#afafaf",
 }
 
 const bodyStyle: React.CSSProperties = {

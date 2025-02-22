@@ -1,11 +1,32 @@
+import * as VFX from "react-vfx"
+
 type Props = {
   children: React.ReactNode
   as: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "span"
   size?: "xxs" | "xs" | "sm" | "md" | "lg" | "xl" | "xxl"
   bold?: boolean
+  shader?: string
 }
 
-export const Text = ({ children, as, size = "md", bold = false }: Props) => {
+export const Text = ({
+  children,
+  as,
+  shader,
+  size = "md",
+  bold = false,
+}: Props) => {
+  if (shader === undefined) {
+    return renderNormalText({ children, as, size, bold })
+  }
+  return renderVFXText({ children, shader, size, bold })
+}
+
+const renderNormalText = ({
+  children,
+  as,
+  size = "md",
+  bold = false,
+}: Omit<Props, "shader">) => {
   const Component = as
   return (
     <Component
@@ -16,6 +37,26 @@ export const Text = ({ children, as, size = "md", bold = false }: Props) => {
     >
       {children}
     </Component>
+  )
+}
+
+const renderVFXText = ({
+  children,
+  shader,
+  size = "md",
+  bold = false,
+}: Omit<Props, "as">) => {
+  return (
+    <VFX.VFXSpan
+      style={{
+        ...getTextSizeStyle(size),
+        ...getWeightStyle(bold),
+        color: "white",
+      }}
+      shader={shader}
+    >
+      {children}
+    </VFX.VFXSpan>
   )
 }
 
